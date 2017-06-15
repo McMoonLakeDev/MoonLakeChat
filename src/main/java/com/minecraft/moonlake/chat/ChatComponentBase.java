@@ -23,11 +23,22 @@ import com.minecraft.moonlake.validate.Validate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>ChatComponentBase</h1>
+ * 聊天组件基础抽象实现类
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see ChatComponent
+ */
 public abstract class ChatComponentBase implements ChatComponent {
 
     private ChatStyle style;
     private List<ChatComponent> extras;
 
+    /**
+     * 聊天组件基础抽象实现类构造函数
+     */
     ChatComponentBase() {
         this.extras = new ArrayList<>();
     }

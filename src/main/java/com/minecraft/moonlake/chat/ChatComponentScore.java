@@ -18,42 +18,88 @@
 
 package com.minecraft.moonlake.chat;
 
+/**
+ * <h1>ChatComponentScore</h1>
+ * 聊天分数组件类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatComponentScore extends ChatComponentBase {
 
     private String name;
     private String objective;
     private String value;
 
+    /**
+     * 聊天分数组件类构造函数
+     */
     public ChatComponentScore() {
     }
 
+    /**
+     * 聊天分数组件类构造函数
+     *
+     * @param name 名称
+     * @param objective 计分板目标
+     */
     public ChatComponentScore(String name, String objective) {
         this.name = name;
         this.objective = objective;
     }
 
+    /**
+     * 获取此聊天分数组件的名称
+     *
+     * @return 名称
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 设置此聊天分数组件的名称
+     *
+     * @param name 名称
+     */
     public ChatComponentScore setName(String name) {
         this.name = name;
         return this;
     }
 
+    /**
+     * 获取此聊天分数组件的计分板目标
+     *
+     * @return 计分板目标
+     */
     public String getObjective() {
         return objective;
     }
 
+    /**
+     * 设置此聊天分数组件的计分板目标
+     *
+     * @param objective 计分板目标
+     */
     public ChatComponentScore setObjective(String objective) {
         this.objective = objective;
         return this;
     }
 
+    /**
+     * 获取此聊天分数组件的计分板值
+     *
+     * @return 计分板值
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * 设置此聊天分数组件的计分板值
+     *
+     * @param value 计分板值
+     */
     public ChatComponentScore setValue(String value) {
         this.value = value;
         return this;

@@ -18,20 +18,43 @@
 
 package com.minecraft.moonlake.chat;
 
+/**
+ * <h1>ChatClickEvent</h1>
+ * 聊天组件点击事件
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatClickEvent {
 
     private final Action action;
     private final String value;
 
+    /**
+     * 聊天组件点击事件构造函数
+     *
+     * @param action 交互类型
+     * @param value 值
+     */
     public ChatClickEvent(Action action, String value) {
         this.action = action;
         this.value = value;
     }
 
+    /**
+     * 获取此聊天组件点击事件的交互类型
+     *
+     * @return 交互类型
+     */
     public Action getAction() {
         return action;
     }
 
+    /**
+     * 获取此聊天组件点击事件的值
+     *
+     * @return 值
+     */
     public String getValue() {
         return value;
     }
@@ -62,15 +85,43 @@ public class ChatClickEvent {
                 '}';
     }
 
+    /**
+     * <h1>Action</h1>
+     * 聊天组件点击事件交互类型
+     *
+     * @version 1.0
+     * @author Month_Light
+     */
     public enum Action {
-        
+
+        /**
+         * 交互类型: 打开链接
+         */
         OPEN_URL,
+        /**
+         * 交互类型: 打开文件
+         */
         OPEN_FILE,
+        /**
+         * 交互类型: 执行命令
+         */
         RUN_COMMAND,
+        /**
+         * 交互类型: 替换命令
+         */
         SUGGEST_COMMAND,
+        /**
+         * 交互类型: 改变页面
+         */
         CHANGE_PAGE,
         ;
 
+        /**
+         * 从名称返回聊天组件点击事件交互类型
+         *
+         * @param name 名称
+         * @return Action
+         */
         public static Action fromName(String name) {
             return Action.valueOf(name.toUpperCase());
         }

@@ -22,33 +22,68 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * <h1>ChatComponentTranslation</h1>
+ * 聊天翻译组件类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatComponentTranslation extends ChatComponentBase {
 
     private String key;
     private List<Object> withs;
 
+    /**
+     * 聊天翻译组件类构造函数
+     */
     public ChatComponentTranslation() {
     }
 
+    /**
+     * 聊天翻译组件类构造函数
+     *
+     * @param key 键
+     */
     public ChatComponentTranslation(String key) {
         this.key = key;
         this.withs = new ArrayList<>();
     }
 
+    /**
+     * 将指定翻译参数添加到此聊天翻译组件内
+     *
+     * @param with 翻译参数
+     */
     public ChatComponentTranslation addWiths(Object... with) {
         withs.addAll(Arrays.asList(with));
         return this;
     }
 
+    /**
+     * 获取此聊天翻译组件的键
+     *
+     * @return 键
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * 设置此聊天翻译组件的键
+     *
+     * @param key 键
+     */
     public ChatComponentTranslation setKey(String key) {
         this.key = key;
         return this;
     }
 
+    /**
+     * 获取此聊天翻译组件的翻译参数列表
+     *
+     * @return 翻译参数列表
+     */
     public List<Object> getWiths() {
         return withs;
     }

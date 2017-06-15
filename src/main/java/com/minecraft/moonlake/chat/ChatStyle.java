@@ -18,6 +18,13 @@
 
 package com.minecraft.moonlake.chat;
 
+/**
+ * <h1>ChatStyle</h1>
+ * 聊天组件样式类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatStyle {
 
     private ChatStyle parent;
@@ -31,6 +38,9 @@ public class ChatStyle {
     ChatHoverEvent hoverEvent;
     String insertion;
 
+    /**
+     * 聊天组件样式 ROOT 类
+     */
     private final static ChatStyle ROOT = new ChatStyle() {
         @Override
         public ChatColor getColor() {
@@ -133,96 +143,201 @@ public class ChatStyle {
         }
     };
 
+    /**
+     * 获取此聊天组件样式的颜色属性
+     *
+     * @return 颜色属性
+     */
     public ChatColor getColor() {
         return color != null ? color : getParent().getColor();
     }
 
+    /**
+     * 获取此聊天组件样式的加粗属性
+     *
+     * @return 加粗属性
+     */
     public boolean getBold() {
         return bold != null ? bold : getParent().getBold();
     }
 
+    /**
+     * 获取此聊天组件样式的斜体属性
+     *
+     * @return 斜体属性
+     */
     public boolean getItalic() {
         return italic != null ? italic : getParent().getItalic();
     }
 
+    /**
+     * 获取此聊天组件样式的删除线属性
+     *
+     * @return 删除线属性
+     */
     public boolean getStrikethrough() {
         return strikethrough != null ? strikethrough : getParent().getStrikethrough();
     }
 
+    /**
+     * 获取此聊天组件样式的下划线属性
+     *
+     * @return 下划线属性
+     */
     public boolean getUnderlined() {
         return underlined != null ? underlined : getParent().getUnderlined();
     }
 
+    /**
+     * 获取此聊天组件样式的随机字符属性
+     *
+     * @return 随机字符属性
+     */
     public boolean getObfuscated() {
         return obfuscated != null ? obfuscated : getParent().getObfuscated();
     }
 
+    /**
+     * 获取此聊天组件样式的点击事件属性
+     *
+     * @return 点击事件属性
+     */
     public ChatClickEvent getClickEvent() {
         return clickEvent != null ? clickEvent : getParent().getClickEvent();
     }
 
+    /**
+     * 获取此聊天组件样式的移动上事件属性
+     *
+     * @return 移动上事件属性
+     */
     public ChatHoverEvent getHoverEvent() {
         return hoverEvent != null ? hoverEvent : getParent().getHoverEvent();
     }
 
+    /**
+     * 获取此聊天组件样式的插入内容属性
+     *
+     * @return 插入内容属性
+     */
     public String getInsertion() {
         return insertion != null ? insertion : getParent().getInsertion();
     }
 
+    /**
+     * 设置此聊天组件样式的颜色属性
+     *
+     * @param color 颜色属性
+     */
     public ChatStyle setColor(ChatColor color) {
         this.color = color;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的加粗属性
+     *
+     * @param bold 加粗属性
+     */
     public ChatStyle setBold(Boolean bold) {
         this.bold = bold;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的斜体属性
+     *
+     * @param italic 斜体属性
+     */
     public ChatStyle setItalic(Boolean italic) {
         this.italic = italic;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的删除线属性
+     *
+     * @param strikethrough 删除线属性
+     */
     public ChatStyle setStrikethrough(Boolean strikethrough) {
         this.strikethrough = strikethrough;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的下划线属性
+     *
+     * @param underlined 下划线属性
+     */
     public ChatStyle setUnderlined(Boolean underlined) {
         this.underlined = underlined;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的随机字符属性
+     *
+     * @param obfuscated 随机字符属性
+     */
     public ChatStyle setObfuscated(Boolean obfuscated) {
         this.obfuscated = obfuscated;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的点击事件属性
+     *
+     * @param clickEvent 点击事件属性
+     */
     public ChatStyle setClickEvent(ChatClickEvent clickEvent) {
         this.clickEvent = clickEvent;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的移动上事件属性
+     *
+     * @param hoverEvent 移动上事件属性
+     */
     public ChatStyle setHoverEvent(ChatHoverEvent hoverEvent) {
         this.hoverEvent = hoverEvent;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的插入内容属性
+     *
+     * @param insertion 插入内容属性
+     */
     public ChatStyle setInsertion(String insertion) {
         this.insertion = insertion;
         return this;
     }
 
+    /**
+     * 设置此聊天组件样式的父样式属性
+     *
+     * @param parent 父样式属性
+     */
     public ChatStyle setParent(ChatStyle parent) {
         this.parent = parent;
         return this;
     }
 
+    /**
+     * 获取此聊天组件样式是否为空
+     *
+     * @return 是否为空
+     */
     public boolean isEmpty() {
         return color == null && bold == null && italic == null && strikethrough == null && underlined == null && obfuscated == null && clickEvent == null && hoverEvent == null && insertion == null;
     }
 
+    /**
+     * 获取此聊天组件样式的父样式属性
+     *
+     * @return 父样式属性
+     */
     private ChatStyle getParent() {
         return parent != null ? parent : ROOT;
     }

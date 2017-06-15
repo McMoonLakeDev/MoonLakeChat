@@ -18,20 +18,43 @@
 
 package com.minecraft.moonlake.chat;
 
+/**
+ * <h1>ChatHoverEvent</h1>
+ * 聊天组件移动上事件
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatHoverEvent {
 
     private final Action action;
     private final ChatComponent value;
 
+    /**
+     * 聊天组件移动上事件构造函数
+     *
+     * @param action
+     * @param value
+     */
     public ChatHoverEvent(Action action, ChatComponent value) {
         this.action = action;
         this.value = value;
     }
 
+    /**
+     * 获取此聊天组件移动上事件的交互类型
+     *
+     * @return 交互类型
+     */
     public Action getAction() {
         return action;
     }
 
+    /**
+     * 获取此聊天组件移动上事件的值
+     *
+     * @return 值
+     */
     public ChatComponent getValue() {
         return value;
     }
@@ -62,14 +85,39 @@ public class ChatHoverEvent {
                 '}';
     }
 
+    /**
+     * <h1>Action</h1>
+     * 聊天组件移动上事件交互类型
+     *
+     * @version 1.0
+     * @author Month_Light
+     */
     public enum Action {
 
+        /**
+         * 交互类型: 显示文本
+         */
         SHOW_TEXT,
+        /**
+         * 交互类型: 显示成就
+         */
         SHOW_ACHIEVEMENT,
+        /**
+         * 交互类型: 显示物品
+         */
         SHOW_ITEM,
+        /**
+         * 交互类型: 显示实体
+         */
         SHOW_ENTITY,
         ;
 
+        /**
+         * 从名称返回聊天组件移动上事件交互类型
+         *
+         * @param name 名称
+         * @return Action
+         */
         public static Action fromName(String name) {
             return Action.valueOf(name.toUpperCase());
         }

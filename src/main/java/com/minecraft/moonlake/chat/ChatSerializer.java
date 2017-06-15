@@ -27,6 +27,13 @@ import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+/**
+ * <h1>ChatSerializer</h1>
+ * 聊天组件序列化类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public final class ChatSerializer {
 
     private final static Gson GSON;
@@ -38,13 +45,29 @@ public final class ChatSerializer {
                 .create();
     }
 
+    /**
+     * 聊天组件序列化类构造函数
+     */
     private ChatSerializer() {
     }
 
+    /**
+     * 将指定聊天组件转换为源文本内容
+     *
+     * @param chatComponent 聊天组件
+     * @return 源文本内容
+     */
     public static String toRaw(ChatComponent chatComponent) {
         return toRaw(chatComponent, true);
     }
 
+    /**
+     * 将指定聊天组件转换为源文本内容
+     *
+     * @param chatComponent 聊天组件
+     * @param color 是否附加颜色
+     * @return 源文本内容
+     */
     public static String toRaw(ChatComponent chatComponent, boolean color) {
         StringBuilder builder = new StringBuilder();
         toRaw0(chatComponent, color, builder);
@@ -61,11 +84,24 @@ public final class ChatSerializer {
             toRaw0(extra, color, builder);
     }
 
+    /**
+     * 将指定聊天组件转换为 Json 格式内容
+     *
+     * @param chatComponent 聊天组件
+     * @return Json
+     */
     public static String toJson(ChatComponent chatComponent) {
         Validate.notNull(chatComponent, "The chat component object is null.");
         return GSON.toJson(chatComponent);
     }
 
+    /**
+     * 将指定 Json 格式的聊天内容转换为聊天组件
+     *
+     * @param json Json
+     * @return ChatComponent
+     * @throws JsonParseException 如果解析 Json 时错误则抛出异常
+     */
     public static ChatComponent fromJson(String json) {
         Validate.notNull(json, "The json object is null.");
         try {
@@ -77,6 +113,13 @@ public final class ChatSerializer {
         }
     }
 
+    /**
+     * 将指定 Json 格式 (宽容模式) 的聊天内容转换为聊天组件
+     *
+     * @param json Json
+     * @return ChatComponent
+     * @throws JsonParseException 如果解析 Json 时错误则抛出异常
+     */
     public static ChatComponent fromJsonLenient(String json) {
         Validate.notNull(json, "The json object is null.");
         try {

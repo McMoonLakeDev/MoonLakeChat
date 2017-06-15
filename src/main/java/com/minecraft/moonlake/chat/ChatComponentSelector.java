@@ -18,23 +18,51 @@
 
 package com.minecraft.moonlake.chat;
 
+import com.minecraft.moonlake.validate.Validate;
+
+/**
+ * <h1>ChatComponentSelector</h1>
+ * 聊天选择器组件类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatComponentSelector extends ChatComponentBase {
 
     private String selector;
 
+    /**
+     * 聊天选择器组件类构造函数
+     */
     public ChatComponentSelector() {
     }
 
+    /**
+     * 聊天选择器组件类构造函数
+     *
+     * @param selector 选择器
+     */
     public ChatComponentSelector(String selector) {
         this.selector = selector;
     }
 
+    /**
+     * 获取此聊天选择器组件的选择器
+     *
+     * @return 选择器
+     */
     public String getSelector() {
         return selector;
     }
 
+    /**
+     * 设置此聊天选择器组件的选择器
+     *
+     * @param selector 选择器
+     * @throws IllegalArgumentException 如果选择器对象为 {@code null} 则抛出异常
+     */
     public ChatComponentSelector setSelector(String selector) {
-        if(selector.startsWith("@"))
+        if(Validate.checkNotNull(selector).startsWith("@"))
             this.selector = selector;
         else
             this.selector = "@" + selector;

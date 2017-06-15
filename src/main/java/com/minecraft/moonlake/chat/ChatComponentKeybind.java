@@ -18,26 +18,50 @@
 
 package com.minecraft.moonlake.chat;
 
+/**
+ * <h1>ChatComponentKeybind</h1>
+ * 聊天热键绑定类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatComponentKeybind extends ChatComponentBase {
 
     private String keybind;
 
+    /**
+     * 聊天热键绑定类构造函数
+     */
     public ChatComponentKeybind() {
     }
 
+    /**
+     * 聊天热键绑定类构造函数
+     *
+     * @param keybind 热键绑定
+     */
     public ChatComponentKeybind(String keybind) {
         this.keybind = keybind;
     }
 
+    /**
+     * 获取此聊天热键绑定组件的热键绑定
+     *
+     * @return 热键绑定
+     */
     public String getKeybind() {
         return keybind;
     }
 
+    /**
+     * 设置此聊天热键绑定组件的热键绑定
+     *
+     * @param keyBind 热键绑定
+     */
     public ChatComponentKeybind setKeybind(String keyBind) {
         this.keybind = keyBind;
         return this;
     }
-
 
     @Override
     public boolean equals(Object obj) {

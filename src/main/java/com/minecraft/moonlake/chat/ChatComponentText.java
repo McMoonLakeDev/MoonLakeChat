@@ -18,22 +18,52 @@
 
 package com.minecraft.moonlake.chat;
 
+import com.minecraft.moonlake.validate.Validate;
+
+/**
+ * <h1>ChatComponentText</h1>
+ * 聊天文本组件类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public class ChatComponentText extends ChatComponentBase {
 
     private String text;
 
+    /**
+     * 聊天文本组件类构造函数
+     *
+     * @param text 文本
+     */
     public ChatComponentText(String text) {
         this.text = text;
     }
 
+    /**
+     * 聊天文本组件类构造函数
+     *
+     * @param text 文本组件
+     * @throws IllegalArgumentException 如果文本组件对象为 {@code null} 则抛出异常
+     */
     public ChatComponentText(ChatComponentText text) {
-        this.text = text.getText();
+        this.text = Validate.checkNotNull(text).getText();
     }
 
+    /**
+     * 获取此聊天文本组件的文本内容
+     *
+     * @return 文本内容
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * 设置此聊天文本组件的文本内容
+     *
+     * @param text 文本内容
+     */
     public ChatComponentText setText(String text) {
         this.text = text;
         return this;
