@@ -121,7 +121,7 @@ public class ChatComponentFancy {
     }
 
     /**
-     * 置当前聊天组件具有点击事件属性
+     * 设置当前聊天组件具有点击事件属性
      *
      * @param action 交互类型
      * @param value 值
@@ -136,7 +136,7 @@ public class ChatComponentFancy {
     }
 
     /**
-     * 置当前聊天组件具有移动上事件属性
+     * 设置当前聊天组件具有移动上事件属性
      *
      * @param action 交互类型
      * @param value 值
