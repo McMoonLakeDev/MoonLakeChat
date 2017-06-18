@@ -42,7 +42,9 @@ public class MoonLakeChatTest {
                                 .color(ChatColor.AQUA)
                                 .link("http://www.mcyszh.net")
                                 .then("]")
-                                .color(ChatColor.GREEN))
+                                .color(ChatColor.GREEN)
+                                .withBold()
+                                .withItalic())
                 .build();
 
         print(fancy);
