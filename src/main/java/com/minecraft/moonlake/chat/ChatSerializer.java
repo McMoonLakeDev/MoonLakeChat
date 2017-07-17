@@ -31,7 +31,7 @@ import java.util.Map;
  * <h1>ChatSerializer</h1>
  * 聊天组件序列化类
  *
- * @version 1.0
+ * @version 1.0.1
  * @author Month_Light
  */
 public final class ChatSerializer {
@@ -218,7 +218,10 @@ public final class ChatSerializer {
             if(src.hoverEvent != null) {
                 JsonObject jsonObjectHoverEvent = new JsonObject();
                 jsonObjectHoverEvent.addProperty("action", src.hoverEvent.getAction().toString().toLowerCase());
-                jsonObjectHoverEvent.add("value", context.serialize(src.hoverEvent.getValue()));
+                if(src.hoverEvent.getValue() instanceof ChatComponentRaw)
+                    jsonObjectHoverEvent.addProperty("value", ((ChatComponentRaw) src.hoverEvent.getValue()).getRaw());
+                else
+                    jsonObjectHoverEvent.add("value", context.serialize(src.hoverEvent.getValue()));
                 jsonObject.add("hoverEvent", jsonObjectHoverEvent);
             }
             return jsonObject;

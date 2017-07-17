@@ -78,6 +78,16 @@ public class MoonLakeChatTest {
         Assert.assertEquals(text1, text2);
     }
 
+    @Test
+    public void testItem() {
+        ChatComponent fancy = new ChatComponentFancy("[物品展示]")
+                .color(ChatColor.AQUA)
+                .tooltipItem("{\"id\":\"minecraft:iron_sword\",\"Damage\":0,\"Count\":1,\"tag\":{\"ench\":[{\"id\":16,\"lvl\":5}]}}")
+                .build();
+
+        print(fancy);
+    }
+
     public void print(ChatComponent component) {
         System.out.println("结果: " + component.toString());
         System.out.println("结果 Json: " + component.toJson());

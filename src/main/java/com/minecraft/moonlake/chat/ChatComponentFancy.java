@@ -28,7 +28,7 @@ import java.util.List;
  * <h1>ChatComponentFancy</h1>
  * 聊天花式组件类
  *
- * @version 1.0
+ * @version 1.0.1
  * @author Month_Light
  */
 public class ChatComponentFancy {
@@ -253,12 +253,12 @@ public class ChatComponentFancy {
     /**
      * 设置当前聊天组件的聊天移动上事件显示物品
      *
-     * @param item 物品 NBT 数据
+     * @param item 物品 NBT Json 数据 - {"id":"minecraft:iron_sword","Damage":0,"Count":1,"tag":{...}}
      * @throws IllegalArgumentException 如果物品 {@code NBT} 数据对象为 {@code null} 则抛出异常
      */
     public ChatComponentFancy tooltipItem(String item) {
         Validate.notNull(item, "The item object is null.");
-        getLast().getStyle().setHoverEvent(new ChatHoverEvent(ChatHoverEvent.Action.SHOW_ITEM, new ChatComponentText(item)));
+        getLast().getStyle().setHoverEvent(new ChatHoverEvent(ChatHoverEvent.Action.SHOW_ITEM, new ChatComponentRaw(item)));
         return this;
     }
 
