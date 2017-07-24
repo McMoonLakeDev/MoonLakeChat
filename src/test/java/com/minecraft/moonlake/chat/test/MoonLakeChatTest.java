@@ -40,7 +40,7 @@ public class MoonLakeChatTest {
                                 .color(ChatColor.GREEN)
                                 .then("官方网站")
                                 .color(ChatColor.AQUA)
-                                .link("http://www.mcyszh.net")
+                                .link("http://www.mcmoonlake.com")
                                 .then("]")
                                 .color(ChatColor.GREEN)
                                 .withBold()
