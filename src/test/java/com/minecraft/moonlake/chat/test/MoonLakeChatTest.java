@@ -88,6 +88,12 @@ public class MoonLakeChatTest {
         print(fancy);
     }
 
+    @Test
+    public void testReadItem() {
+        ChatComponent component = ChatSerializer.fromJson("{\"extra\":[{\"color\":\"aqua\",\"hoverEvent\":{\"action\":\"show_item\",\"value\":\"{\\\"id\\\":\\\"minecraft:iron_sword\\\",\\\"Damage\\\":0,\\\"Count\\\":1,\\\"tag\\\":{\\\"ench\\\":[{\\\"id\\\":16,\\\"lvl\\\":5}]}}\"},\"text\":\"[物品展示]\"}],\"text\":\"\"}");
+        print(component);
+    }
+
     public void print(ChatComponent component) {
         System.out.println("结果: " + component.toString());
         System.out.println("结果 Json: " + component.toJson());
