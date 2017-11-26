@@ -16,7 +16,11 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
-public class MoonLakeChat {
+public final class MoonLakeChat {
+
+    static { }
+
+    private MoonLakeChat() { }
 }

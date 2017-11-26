@@ -16,7 +16,7 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <h1>ChatSerializer</h1>
@@ -49,6 +51,85 @@ public final class ChatSerializer {
      * 聊天组件序列化类构造函数
      */
     private ChatSerializer() {
+    }
+
+    public static ChatComponent fromRaw(String raw) {
+        if(raw == null || raw.isEmpty())
+            return new ChatComponentText("");
+        return new RawMessage(raw).get();
+    }
+
+    public static ChatComponent fromRawOrNull(String raw) {
+        return raw == null ? null : fromRaw(raw);
+    }
+
+    private static class RawMessage {
+
+        private final static Pattern PATTERN_RAW = Pattern.compile("(§[0-9a-fk-or])", Pattern.CASE_INSENSITIVE);
+        private ChatComponent currentComponent;
+        private ChatStyle style;
+        private int currentIndex;
+        private final String raw;
+
+        private RawMessage(String raw) {
+            this.currentComponent = new ChatComponentText("");
+            this.style = new ChatStyle();
+            this.raw = raw;
+            if(raw != null) {
+                Matcher matcher = PATTERN_RAW.matcher(raw);
+                int groupId;
+                for(String match; matcher.find(); currentIndex = matcher.end(groupId)) {
+                    groupId = 0;
+                    do {
+                        ++groupId;
+                    } while ((match = matcher.group(groupId)) == null);
+                    append(matcher.start(groupId));
+                    switch (groupId) {
+                        case 1:
+                            ChatColor color = ChatColor.fromCode(match.toLowerCase().charAt(1));
+                            if(color == ChatColor.RESET) {
+                                style = new ChatStyle();
+                            } else if(color.isFormat()) {
+                                switch (color) {
+                                    case OBFUSCATED:
+                                        style.setObfuscated(true); break;
+                                    case BOLD:
+                                        style.setBold(true); break;
+                                    case STRIKETHROUGH:
+                                        style.setStrikethrough(true); break;
+                                    case UNDERLINE:
+                                        style.setUnderlined(true); break;
+                                    case ITALIC:
+                                        style.setItalic(true); break;
+                                    default:
+                                        throw new AssertionError("Error chat color format: " + color);
+                                }
+                            } else {
+                                style = new ChatStyle().setColor(color);
+                            }
+                            break;
+                    }
+                    currentIndex = matcher.end(groupId);
+                }
+                if(currentIndex < raw.length())
+                    append(raw.length());
+            }
+        }
+
+        private void append(int index) {
+            if(index > currentIndex) {
+                ChatComponent extra = new ChatComponentText(raw.substring(currentIndex, index)).setStyle(style);
+                currentIndex = index;
+                style = style.clone();
+                if(currentComponent == null)
+                    currentComponent = new ChatComponentText("");
+                currentComponent.append(extra);
+            }
+        }
+
+        private ChatComponent get() {
+            return currentComponent == null ? new ChatComponentText("") : currentComponent;
+        }
     }
 
     /**
@@ -97,7 +178,7 @@ public final class ChatSerializer {
     }
 
     private static void appendColor(StringBuilder builder, ChatColor color) {
-        builder.append('\u00A7').append(color.getCode());
+        builder.append(color.toString());
     }
 
     /**
@@ -182,9 +263,7 @@ public final class ChatSerializer {
                     if(jsonObjectHoverEvent != null) {
                         ChatHoverEvent.Action action = ChatHoverEvent.Action.fromName(jsonObjectHoverEvent.get("action").getAsString());
                         JsonElement value = jsonObjectHoverEvent.get("value");
-                        if(value.isJsonPrimitive())
-                            style.hoverEvent = new ChatHoverEvent(action, new ChatComponentText(value.getAsString()));
-                        else
+                        if(action != null && value != null)
                             style.hoverEvent = new ChatHoverEvent(action, context.deserialize(value, ChatComponent.class));
                     }
                 }
@@ -221,8 +300,8 @@ public final class ChatSerializer {
             if(src.hoverEvent != null) {
                 JsonObject jsonObjectHoverEvent = new JsonObject();
                 jsonObjectHoverEvent.addProperty("action", src.hoverEvent.getAction().toString().toLowerCase());
-                if(src.hoverEvent.getValue() instanceof ChatComponentText)
-                    jsonObjectHoverEvent.addProperty("value", ((ChatComponentText) src.hoverEvent.getValue()).getText());
+                if(src.hoverEvent.getValue() instanceof ChatComponentRaw)
+                    jsonObjectHoverEvent.addProperty("value", ((ChatComponentRaw) src.hoverEvent.getValue()).getText());
                 else
                     jsonObjectHoverEvent.add("value", context.serialize(src.hoverEvent.getValue()));
                 jsonObject.add("hoverEvent", jsonObjectHoverEvent);
@@ -341,6 +420,12 @@ public final class ChatSerializer {
                 throw new JsonParseException("Don't know how to serialize " + src + " as a Component");
             }
             return jsonObject;
+        }
+    }
+
+    static class ChatComponentRaw extends ChatComponentText {
+        ChatComponentRaw(String text) {
+            super(text);
         }
     }
 }

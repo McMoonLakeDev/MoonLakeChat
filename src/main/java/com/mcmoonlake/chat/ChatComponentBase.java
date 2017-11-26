@@ -16,7 +16,7 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
 import com.minecraft.moonlake.validate.Validate;
 

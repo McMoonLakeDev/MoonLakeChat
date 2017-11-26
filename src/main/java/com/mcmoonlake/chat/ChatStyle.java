@@ -16,7 +16,7 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
 /**
  * <h1>ChatStyle</h1>
@@ -331,6 +331,21 @@ public class ChatStyle {
      */
     public boolean isEmpty() {
         return color == null && bold == null && italic == null && strikethrough == null && underlined == null && obfuscated == null && clickEvent == null && hoverEvent == null && insertion == null;
+    }
+
+    @Override
+    public ChatStyle clone() {
+        ChatStyle copy = new ChatStyle();
+        copy.color = color;
+        copy.bold = bold;
+        copy.italic = italic;
+        copy.strikethrough = strikethrough;
+        copy.underlined = underlined;
+        copy.obfuscated = obfuscated;
+        copy.clickEvent = clickEvent;
+        copy.hoverEvent = hoverEvent;
+        copy.insertion = insertion;
+        return copy;
     }
 
     /**

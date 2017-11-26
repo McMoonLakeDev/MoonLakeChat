@@ -4,16 +4,15 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.minecraft.moonlake</groupId>
+    <groupId>com.mcmoonlake</groupId>
     <artifactId>MoonLakeChat</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--<libraries>${project.basedir}/lib</libraries>-->
     </properties>
 
     <repositories>
@@ -31,12 +30,6 @@
             <artifactId>Validate</artifactId>
             <version>1.0</version>
             <scope>compile</scope> <!-- 将 Validate 支持库合并到 MoonLakeChat 内 -->
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>21.0</version>
-            <scope>provided</scope> <!-- 运行时依赖, 如果依赖此 MoonLakeChat 需要单独 Guava 支持库 -->
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -60,7 +53,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -69,7 +62,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.0.2</version>
                 <configuration>
                     <finalName>${project.artifactId}-${project.version}</finalName>
                 </configuration>
@@ -93,7 +86,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -110,7 +103,6 @@
                 <directory>src/main/resources/</directory>
                 <filtering>true</filtering>
             </resource>
-            <!-- 这个支持库暂时不需要这些资源打包在一起
             <resource>
                 <directory>${project.basedir}/</directory>
                 <includes>
@@ -119,7 +111,6 @@
                 </includes>
                 <filtering>true</filtering>
             </resource>
-            -->
         </resources>
     </build>
 

@@ -16,7 +16,7 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
 /**
  * <h1>ChatComponentScore</h1>

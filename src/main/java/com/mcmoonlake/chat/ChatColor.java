@@ -16,7 +16,11 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * <h1>ChatColor</h1>
@@ -119,6 +123,16 @@ public enum ChatColor {
 
     private final char code;
     private final boolean format;
+    private final static char CHAR_COLOR = '§';
+    private final static String STRING_COLOR = "" + CHAR_COLOR;
+    private final static Map<Character, ChatColor> CHAR_MAP;
+    private final static Pattern STRIP_COLOR = Pattern.compile("(?i)" + CHAR_COLOR + "[0-9A-FK-OR]");
+
+    static {
+        CHAR_MAP = new HashMap<>();
+        for(ChatColor color : values())
+            CHAR_MAP.put(color.code, color);
+    }
 
     /**
      * 聊天组件颜色构造函数
@@ -158,6 +172,26 @@ public enum ChatColor {
         return format;
     }
 
+    @Override
+    public String toString() {
+        return STRING_COLOR + code;
+    }
+
+    public static String stripColor(String input) {
+        return STRIP_COLOR.matcher(input).replaceAll("");
+    }
+
+    public static String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
+        char[] chars = textToTranslate.toCharArray();
+        for(int i = 0; i < chars.length; i++) {
+            if(chars[i] == altColorChar && "0123456789AaBbCcDdEeFfKkLlMmNnOoRr".indexOf(chars[i + 1]) > -1) {
+                chars[i] = CHAR_COLOR;
+                chars[i + 1] = Character.toLowerCase(chars[i + 1]);
+            }
+        }
+        return new String(chars);
+    }
+
     /**
      * 从名称返回聊天组件颜色
      *
@@ -166,5 +200,9 @@ public enum ChatColor {
      */
     public static ChatColor fromName(String name) {
         return ChatColor.valueOf(name.toUpperCase());
+    }
+
+    public static ChatColor fromCode(Character code) {
+        return CHAR_MAP.getOrDefault(code, WHITE);
     }
 }

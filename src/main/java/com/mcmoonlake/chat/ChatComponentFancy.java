@@ -16,7 +16,7 @@
  */
 
 
-package com.minecraft.moonlake.chat;
+package com.mcmoonlake.chat;
 
 import com.minecraft.moonlake.validate.Validate;
 
@@ -258,7 +258,7 @@ public class ChatComponentFancy {
      */
     public ChatComponentFancy tooltipItem(String item) {
         Validate.notNull(item, "The item object is null.");
-        getLast().getStyle().setHoverEvent(new ChatHoverEvent(ChatHoverEvent.Action.SHOW_ITEM, new ChatComponentText(item)));
+        getLast().getStyle().setHoverEvent(new ChatHoverEvent(ChatHoverEvent.Action.SHOW_ITEM, new ChatSerializer.ChatComponentRaw(item)));
         return this;
     }
 

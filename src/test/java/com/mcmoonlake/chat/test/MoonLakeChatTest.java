@@ -16,9 +16,9 @@
  */
 
 
-package com.minecraft.moonlake.chat.test;
+package com.mcmoonlake.chat.test;
 
-import com.minecraft.moonlake.chat.*;
+import com.mcmoonlake.chat.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -91,6 +91,12 @@ public class MoonLakeChatTest {
     @Test
     public void testReadItem() {
         ChatComponent component = ChatSerializer.fromJson("{\"extra\":[{\"color\":\"aqua\",\"hoverEvent\":{\"action\":\"show_item\",\"value\":\"{\\\"id\\\":\\\"minecraft:iron_sword\\\",\\\"Damage\\\":0,\\\"Count\\\":1,\\\"tag\\\":{\\\"ench\\\":[{\\\"id\\\":16,\\\"lvl\\\":5}]}}\"},\"text\":\"[物品展示]\"}],\"text\":\"\"}");
+        print(component);
+    }
+
+    @Test
+    public void testRaw() {
+        ChatComponent component = ChatSerializer.fromRaw("§a§nHello§6§nWorld§f!!!");
         print(component);
     }
 
