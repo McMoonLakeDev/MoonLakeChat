@@ -26,9 +26,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.minecraft.moonlake</groupId>
+            <groupId>com.mcmoonlake</groupId>
             <artifactId>Validate</artifactId>
-            <version>1.0</version>
+            <version>1.1.0</version>
             <scope>compile</scope> <!-- 将 Validate 支持库合并到 MoonLakeChat 内 -->
         </dependency>
         <dependency>

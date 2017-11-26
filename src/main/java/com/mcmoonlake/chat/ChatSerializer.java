@@ -20,7 +20,7 @@ package com.mcmoonlake.chat;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import com.minecraft.moonlake.validate.Validate;
+import com.mcmoonlake.validate.Validate;
 
 import java.io.IOException;
 import java.io.StringReader;

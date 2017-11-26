@@ -18,7 +18,7 @@
 
 package com.mcmoonlake.chat;
 
-import com.minecraft.moonlake.validate.Validate;
+import com.mcmoonlake.validate.Validate;
 
 /**
  * <h1>ChatComponentSelector</h1>

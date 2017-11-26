@@ -18,7 +18,7 @@
 
 package com.mcmoonlake.chat;
 
-import com.minecraft.moonlake.validate.Validate;
+import com.mcmoonlake.validate.Validate;
 
 import java.util.ArrayList;
 import java.util.Collection;
